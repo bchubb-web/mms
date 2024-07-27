@@ -46,16 +46,16 @@ class MakeManagedModel extends Command
         $this->info('Admin management resource created.');
 
         // make controller
-        $controllerOptions = ['name' => $model . 'Controller', '--model' => $model, '--api' => true];
+        $controllerOptions = ['name' => $model . 'Controller', '--model' => $model];
         if ($parent) {
-            $this->call('make:controller', [ ...$controllerOptions, '--parent' => $parent, '--type' => 'controller.nested.managed']);
+            $this->call('make:controller', [ ...$controllerOptions, '--parent' => $parent, '--type' => 'nested.managed']);
         } else {
-            $this->call('make:controller', [ ...$controllerOptions, '--type' => 'controller.managed' ]);
+            $this->call('make:controller', [ ...$controllerOptions, '--type' => 'managed' ]);
         }
         $this->info('Controller created.');
 
         // make index and show views
         $this->call('make:view', ['name' => 'resources/views/' . strtolower($model) . '/index.blade.php']);
-        $this->call('make:view', ['name' => 'resources/views/' . strtolower($model) . '/show.blade.php']);
+        $this->call('make:view', ['name' =>  strtolower($model) . '/show.blade.php']);
     }
 }
