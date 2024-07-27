@@ -26,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandName(config('app.name') . ' Admin')
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path(env('APP_ADMIN_SLUG', 'admin'))
             ->login()
             ->colors([
                 'primary' => Color::Teal,
