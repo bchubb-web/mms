@@ -7,6 +7,12 @@ use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedParentModel }};
 use Illuminate\Http\Request;
 
+/**
+ * {{ model }} Managed Controller
+ * This controller handles the front end interactions with a model, editing and
+ * managing is done via the filament admin resource {{ model }}Resource.php
+ * where you can define the form schema and input validation for the model.
+ */
 class {{ class }} extends Controller
 {
     /**
@@ -14,7 +20,7 @@ class {{ class }} extends Controller
      */
     public function index({{ parentModel }} ${{ parentModelVariable }})
     {
-        //
+        return view('{{ model }}.index');
     }
 
     /**
@@ -22,6 +28,6 @@ class {{ class }} extends Controller
      */
     public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
     {
-        //
+        return view('{{ model }}.show');
     }
 }

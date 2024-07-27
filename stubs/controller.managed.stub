@@ -6,6 +6,12 @@ use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
 
+/**
+ * {{ model }} Managed Controller
+ * This controller handles the front end interactions with a model, editing and
+ * managing is done via the filament admin resource {{ model }}Resource.php
+ * where you can define the form schema and input validation for the model.
+ */
 class {{ class }} extends Controller
 {
     /**
@@ -15,7 +21,7 @@ class {{ class }} extends Controller
     {
         $models = {{ model }}::all();
 
-        return view('{{Str::lower(model) }}.index');
+        return view('{{ model }}.index');
     }
 
     /**
@@ -23,6 +29,6 @@ class {{ class }} extends Controller
      */
     public function show({{ model }} ${{ modelVariable }})
     {
-        return view('{{Str::lower(model) }}.show');
+        return view('{{ model }}.show');
     }
 }
