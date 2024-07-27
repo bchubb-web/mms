@@ -55,7 +55,7 @@ class MakeManagedModel extends Command
         $this->info('Controller created.');
 
         // make index and show views
-        $this->call('make:view', ['name' => 'resources/views/' . strtolower($model) . '/index.blade.php']);
-        $this->call('make:view', ['name' =>  strtolower($model) . '/show.blade.php']);
+        $this->call('make:view', ['name' => strtolower($model) . '.index']);
+        $this->call('make:view', ['name' => strtolower($model) . '.show']);
     }
 }
