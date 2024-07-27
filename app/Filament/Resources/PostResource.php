@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostResource extends Resource
@@ -36,7 +37,19 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Author')
+                    ->width('150px')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Published')
+                    // format with carbon diff for humans
+                    ->formatStateUsing(fn (Model $record) => $record->created_at->diffForHumans())
+                    ->width('150px')
+                    ->sortable(),
             ])
             ->filters([
                 //
