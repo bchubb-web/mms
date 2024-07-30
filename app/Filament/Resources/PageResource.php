@@ -21,10 +21,9 @@ class PageResource extends Resource
 
     public static function form(Form $form): Form
     {
-        /** @var \Illuminate\Database\Eloquent\Relations\HasMany $page_fields */
-        $page_fields = $form->getRecord()->fields();
-        /** @var array $fields */
-        $fields = is_null($form->getRecord()) ? [] : $page_fields->get()->toArray();
+        $fields = $form->getRecord()?->fields()->get()->toArray();
+
+        $fields = $fields ?? [];
 
         $formFields = array_map(function ($field) {
             return $field['filament_input_type']::make('page_field__'.$field['id'])
