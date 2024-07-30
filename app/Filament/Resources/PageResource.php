@@ -43,6 +43,13 @@ class PageResource extends Resource
                     ->columnSpan(1)
                     ->required(),
                 ...$formFields,
+                Forms\Components\Select::make('template')
+                    ->options(
+                       Page::templates()
+                    )
+                    ->default('default')
+                    ->selectablePlaceholder(false)
+                    ->required(),
             ]);
     }
 
@@ -50,7 +57,14 @@ class PageResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->width('200px')
+                    ->prefix('/')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
