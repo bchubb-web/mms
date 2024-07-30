@@ -30,6 +30,7 @@ class PageResource extends Resource
                 ->columnSpan(3)
                 ->label($field['label']);
         }, $fields);
+
         return $form
             ->columns(3)
             ->schema([
@@ -41,7 +42,11 @@ class PageResource extends Resource
                     ->label('Slug')
                     ->columnSpan(1)
                     ->required(),
-                ...$formFields,
+
+                Forms\Components\Section::make(
+                    'Fields'
+                )->schema($formFields),
+
                 Forms\Components\Select::make('template')
                     ->options(
                        Page::templates()
